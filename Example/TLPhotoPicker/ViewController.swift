@@ -215,6 +215,25 @@ class ViewController: UIViewController,TLPhotosPickerViewControllerDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         vc.present(alert, animated: true, completion: nil)
     }
+    
+    func didSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset) {
+        print("---")
+        print("選択されました")
+        print(asset)
+        print("選択中の数: \(picker.selectedAssets.count)")
+        print("---")
+
+    }
+    
+    func didDeSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset, index: Int) {
+        print("---")
+        print("選択が外されました")
+        print(asset)
+        print("選択外した要素のindex: \(index)")
+        print("選択中の数: \(picker.selectedAssets.count)")
+        print("---")
+    }
+    
 }
 
 extension ViewController: TLPhotosPickerLogDelegate {
