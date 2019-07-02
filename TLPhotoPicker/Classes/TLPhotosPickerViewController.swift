@@ -20,8 +20,8 @@ public protocol TLPhotosPickerViewControllerDelegate: class {
     func didExceedMaximumNumberOfSelection(picker: TLPhotosPickerViewController)
     func handleNoAlbumPermissions(picker: TLPhotosPickerViewController)
     func handleNoCameraPermissions(picker: TLPhotosPickerViewController)
-    func didSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset)
-    func didDeSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset, index: Int)
+    func didSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset, indexPath: IndexPath)
+    func didDeSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset, index: Int, indexPath: IndexPath)
 }
 
 extension TLPhotosPickerViewControllerDelegate {
@@ -34,8 +34,8 @@ extension TLPhotosPickerViewControllerDelegate {
     public func didExceedMaximumNumberOfSelection(picker: TLPhotosPickerViewController) { }
     public func handleNoAlbumPermissions(picker: TLPhotosPickerViewController) { }
     public func handleNoCameraPermissions(picker: TLPhotosPickerViewController) { }
-    public func didSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset) {}
-    public func didDeSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset, index: Int) {}
+    public func didSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset, indexPath: IndexPath) {}
+    public func didDeSelectTLPHAsset(picker: TLPhotosPickerViewController, asset: TLPHAsset, index: Int, indexPath: IndexPath) {}
 }
 
 //for log
@@ -817,7 +817,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
             if self.playRequestID?.indexPath == indexPath {
                 stopPlay()
             }
-            self.delegate?.didDeSelectTLPHAsset(picker: self, asset: asset, index: index)
+            self.delegate?.didDeSelectTLPHAsset(picker: self, asset: asset, index: index, indexPath: indexPath)
         }else {
         //select
             self.logDelegate?.selectedPhoto(picker: self, at: indexPath.row)
@@ -830,7 +830,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
             if asset.type != .photo, self.configure.autoPlay {
                 playVideo(asset: asset, indexPath: indexPath)
             }
-            self.delegate?.didSelectTLPHAsset(picker: self, asset: asset)
+            self.delegate?.didSelectTLPHAsset(picker: self, asset: asset, indexPath: indexPath)
         }
     }
     
