@@ -776,7 +776,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
     
     //Delegate
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let collection = self.focusedCollection, let cell = self.collectionView.cellForItem(at: indexPath) as? TLPhotoCollectionViewCell else { return }
+        guard let collection = self.focusedCollection, let cell = self.collectionView(self.collectionView, cellForItemAt: indexPath) as? TLPhotoCollectionViewCell else { return }
         let isCameraRow = collection.useCameraButton && indexPath.section == 0 && indexPath.row == 0
         if isCameraRow {
             if Platform.isSimulator {
